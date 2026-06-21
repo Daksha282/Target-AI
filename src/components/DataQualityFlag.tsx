@@ -1,18 +1,18 @@
-import type { DataQuality } from "../engine/types";
-
 interface Props {
-  quality: DataQuality;
+  dataQuality: string;
   reason: string;
 }
 
-export function DataQualityFlag({ quality, reason }: Props) {
-  if (quality === "high") return null;
+// Data quality is decided in Layer 1; this flag only surfaces a warning for
+// medium/low coverage. High quality renders nothing.
+export function DataQualityFlag({ dataQuality, reason }: Props) {
+  if (dataQuality !== "medium" && dataQuality !== "low") return null;
 
   return (
-    <div className={`dq-flag dq-${quality}`}>
+    <div className={`dq-flag dq-${dataQuality}`}>
       <span className="dq-icon">⚠</span>
       <span>
-        <strong>Data quality: {quality}</strong> — {reason}
+        <strong>Data quality: {dataQuality}</strong> — {reason}
       </span>
     </div>
   );

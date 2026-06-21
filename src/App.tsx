@@ -12,7 +12,7 @@ function App() {
     <ThresholdProvider>
       <PortfolioView onSelectSku={setSelectedSku} />
       {selectedSku && (
-        <SkuDetail health={selectedSku} onClose={() => setSelectedSku(null)} />
+        <SkuDetail health={selectedSku} onBack={() => setSelectedSku(null)} />
       )}
     </ThresholdProvider>
   );

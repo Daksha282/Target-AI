@@ -62,9 +62,12 @@ export function InventoryTable({ skuHealthList, onSelectSku }: Props) {
       });
   }, [skuHealthList, riskFilter, searchText, sortKey, sortAsc]);
 
-  function col(key: SortKey, label: string) {
+  function col(key: SortKey, label: string, numeric = false) {
     return (
-      <th className="sortable" onClick={() => handleSort(key)}>
+      <th
+        className={`sortable${numeric ? " num" : ""}`}
+        onClick={() => handleSort(key)}
+      >
         {label}{sortKey === key ? (sortAsc ? " ↑" : " ↓") : ""}
       </th>
     );
@@ -101,11 +104,11 @@ export function InventoryTable({ skuHealthList, onSelectSku }: Props) {
             {col("category", "Category")}
             {col("store", "Store")}
             <th>Brand</th>
-            {col("onHand", "On Hand")}
-            <th>On Order</th>
-            {col("daysOfSupply", "Days Supply")}
-            <th>Avg Demand</th>
-            {col("reorderQty", "Reorder Qty")}
+            {col("onHand", "On Hand", true)}
+            <th className="num">On Order</th>
+            {col("daysOfSupply", "Days Supply", true)}
+            <th className="num">Avg Demand</th>
+            {col("reorderQty", "Reorder Qty", true)}
             {col("risk", "Risk")}
           </tr>
         </thead>
@@ -113,7 +116,7 @@ export function InventoryTable({ skuHealthList, onSelectSku }: Props) {
           {visible.map((h) => (
             <tr
               key={`${h.storeId}-${h.skuId}`}
-              className="table-row clickable"
+              className={`table-row clickable rail-${h.riskClass}`}
               onClick={() => onSelectSku(h)}
             >
               <td>
@@ -127,11 +130,11 @@ export function InventoryTable({ skuHealthList, onSelectSku }: Props) {
                   {h.sku.brandType}
                 </span>
               </td>
-              <td>{formatUnits(h.inventoryRow.onHand)}</td>
-              <td>{formatUnits(h.inventoryRow.onOrder)}</td>
-              <td>{formatDays(h.daysOfSupply)}</td>
-              <td>{formatDemand(h.averageDailyDemand)}</td>
-              <td>{h.reorderQty > 0 ? <strong className="qty-alert">{formatUnits(h.reorderQty)}</strong> : "—"}</td>
+              <td className="num">{formatUnits(h.inventoryRow.onHand)}</td>
+              <td className="num">{formatUnits(h.inventoryRow.onOrder)}</td>
+              <td className="num">{formatDays(h.daysOfSupply)}</td>
+              <td className="num">{formatDemand(h.averageDailyDemand)}</td>
+              <td className="num">{h.reorderQty > 0 ? <strong className="qty-alert">{formatUnits(h.reorderQty)}</strong> : "—"}</td>
               <td>
                 <span className={`risk-badge risk-${h.riskClass}`}>{h.riskClass}</span>
               </td>

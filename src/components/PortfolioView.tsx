@@ -31,11 +31,14 @@ export function PortfolioView({ onSelectSku }: Props) {
     <div className="portfolio">
       <header className="app-header">
         <div className="header-brand">
-          <span className="brand-logo">🎯</span>
-          <span className="app-title">AI Inventory Intelligence Dashboard</span>
+          <span className="bullseye" aria-hidden="true" />
+          <span className="brand-text">
+            <span className="app-title">Replenishment Control</span>
+            <span className="brand-sub">Target · Inventory Intelligence</span>
+          </span>
         </div>
         <div className="header-right">
-          <span className="simulated-label">⚠ SIMULATED DATA</span>
+          <span className="simulated-label">Simulated data</span>
           <select
             className="store-select"
             value={selectedStore}

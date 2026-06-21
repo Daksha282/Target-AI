@@ -12,22 +12,25 @@ export function HealthTiles({ skuHealthList }: Props) {
   const healthScore = total === 0 ? 0 : Math.round((healthy / total) * 100);
 
   return (
-    <div className="health-tiles">
-      <div className="tile tile-alert">
-        <span className="tile-value">{lowStock}</span>
-        <span className="tile-label">At Risk</span>
+    <div className="status-strip">
+      <div className="strip-seg seg-alert">
+        <span className="seg-value">{lowStock}</span>
+        <span className="seg-label">Low-Stock</span>
       </div>
-      <div className="tile tile-warn">
-        <span className="tile-value">{excess}</span>
-        <span className="tile-label">Excess Stock</span>
+      <div className="strip-seg seg-warn">
+        <span className="seg-value">{excess}</span>
+        <span className="seg-label">Excess Stock</span>
       </div>
-      <div className="tile tile-ok">
-        <span className="tile-value">{healthy}</span>
-        <span className="tile-label">Healthy</span>
+      <div className="strip-seg seg-ok">
+        <span className="seg-value">{healthy}</span>
+        <span className="seg-label">Healthy</span>
       </div>
-      <div className={`tile ${healthScore >= 70 ? "tile-ok" : healthScore >= 40 ? "tile-warn" : "tile-alert"}`}>
-        <span className="tile-value">{healthScore}%</span>
-        <span className="tile-label">Health Score</span>
+      <div className="strip-seg seg-score">
+        <span className="seg-value">
+          {healthScore}
+          <span className="seg-unit">%</span>
+        </span>
+        <span className="seg-label">Portfolio Score</span>
       </div>
     </div>
   );

@@ -1,0 +1,72 @@
+[
+  {
+    "skuId": "SKU-1001",
+    "name": "Up&Up Cotton Rounds 100ct",
+    "category": "Health & Beauty",
+    "brandType": "owned",
+    "leadTimeDays": 21
+  },
+  {
+    "skuId": "SKU-1002",
+    "name": "Threshold 3-Wick Candle",
+    "category": "Home",
+    "brandType": "owned",
+    "leadTimeDays": 18
+  },
+  {
+    "skuId": "SKU-1003",
+    "name": "Good & Gather Trail Mix",
+    "category": "Grocery",
+    "brandType": "owned",
+    "leadTimeDays": 10
+  },
+  {
+    "skuId": "SKU-1004",
+    "name": "Tide Liquid Detergent 92oz",
+    "category": "Household",
+    "brandType": "national",
+    "leadTimeDays": 7
+  },
+  {
+    "skuId": "SKU-1005",
+    "name": "Cat & Jack Kids Tee",
+    "category": "Apparel",
+    "brandType": "owned",
+    "leadTimeDays": 25
+  },
+  {
+    "skuId": "SKU-1006",
+    "name": "Market Pantry Whole Milk",
+    "category": "Grocery",
+    "brandType": "national",
+    "leadTimeDays": 3
+  },
+  {
+    "skuId": "SKU-1007",
+    "name": "Heyday USB-C Cable 6ft",
+    "category": "Electronics",
+    "brandType": "owned",
+    "leadTimeDays": 14
+  },
+  {
+    "skuId": "SKU-1008",
+    "name": "Brightroom Storage Bin 12gal",
+    "category": "Home",
+    "brandType": "owned",
+    "leadTimeDays": 16
+  },
+  {
+    "skuId": "SKU-1009",
+    "name": "Coca-Cola 12pk Cans",
+    "category": "Grocery",
+    "brandType": "national",
+    "leadTimeDays": 5
+  },
+  {
+    "skuId": "SKU-1010",
+    "name": "Goodfellow Crew Socks 6pk",
+    "category": "Apparel",
+    "brandType": "owned",
+    "leadTimeDays": 20
+  }
+]

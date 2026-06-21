@@ -1,0 +1,242 @@
+[
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1001",
+    "onHand": 65,
+    "onOrder": 0,
+    "reorderPoint": 144,
+    "safetyStock": 18
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1001",
+    "onHand": 55,
+    "onOrder": 0,
+    "reorderPoint": 122,
+    "safetyStock": 15
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1001",
+    "onHand": 78,
+    "onOrder": 0,
+    "reorderPoint": 173,
+    "safetyStock": 22
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1002",
+    "onHand": 180,
+    "onOrder": 0,
+    "reorderPoint": 42,
+    "safetyStock": 6
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1002",
+    "onHand": 153,
+    "onOrder": 0,
+    "reorderPoint": 36,
+    "safetyStock": 5
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1002",
+    "onHand": 216,
+    "onOrder": 0,
+    "reorderPoint": 50,
+    "safetyStock": 7
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1003",
+    "onHand": 255,
+    "onOrder": 70,
+    "reorderPoint": 182,
+    "safetyStock": 42
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1003",
+    "onHand": 217,
+    "onOrder": 60,
+    "reorderPoint": 155,
+    "safetyStock": 36
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1003",
+    "onHand": 305,
+    "onOrder": 84,
+    "reorderPoint": 218,
+    "safetyStock": 50
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1004",
+    "onHand": 162,
+    "onOrder": 36,
+    "reorderPoint": 90,
+    "safetyStock": 27
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1004",
+    "onHand": 139,
+    "onOrder": 31,
+    "reorderPoint": 77,
+    "safetyStock": 23
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1004",
+    "onHand": 194,
+    "onOrder": 43,
+    "reorderPoint": 108,
+    "safetyStock": 32
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1005",
+    "onHand": 252,
+    "onOrder": 20,
+    "reorderPoint": 140,
+    "safetyStock": 15
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1005",
+    "onHand": 214,
+    "onOrder": 17,
+    "reorderPoint": 119,
+    "safetyStock": 13
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1005",
+    "onHand": 302,
+    "onOrder": 24,
+    "reorderPoint": 168,
+    "safetyStock": 18
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1006",
+    "onHand": 324,
+    "onOrder": 120,
+    "reorderPoint": 180,
+    "safetyStock": 90
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1006",
+    "onHand": 274,
+    "onOrder": 102,
+    "reorderPoint": 152,
+    "safetyStock": 76
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1006",
+    "onHand": 389,
+    "onOrder": 144,
+    "reorderPoint": 216,
+    "safetyStock": 108
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1007",
+    "onHand": 122,
+    "onOrder": 16,
+    "reorderPoint": 68,
+    "safetyStock": 12
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1007",
+    "onHand": 104,
+    "onOrder": 14,
+    "reorderPoint": 58,
+    "safetyStock": 10
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1007",
+    "onHand": 146,
+    "onOrder": 19,
+    "reorderPoint": 81,
+    "safetyStock": 14
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1008",
+    "onHand": 198,
+    "onOrder": 0,
+    "reorderPoint": 57,
+    "safetyStock": 9
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1008",
+    "onHand": 168,
+    "onOrder": 0,
+    "reorderPoint": 49,
+    "safetyStock": 8
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1008",
+    "onHand": 238,
+    "onOrder": 0,
+    "reorderPoint": 69,
+    "safetyStock": 11
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1009",
+    "onHand": 317,
+    "onOrder": 88,
+    "reorderPoint": 176,
+    "safetyStock": 66
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1009",
+    "onHand": 270,
+    "onOrder": 75,
+    "reorderPoint": 150,
+    "safetyStock": 56
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1009",
+    "onHand": 380,
+    "onOrder": 106,
+    "reorderPoint": 211,
+    "safetyStock": 79
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1010",
+    "onHand": 290,
+    "onOrder": 28,
+    "reorderPoint": 161,
+    "safetyStock": 21
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1010",
+    "onHand": 247,
+    "onOrder": 24,
+    "reorderPoint": 137,
+    "safetyStock": 18
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1010",
+    "onHand": 347,
+    "onOrder": 34,
+    "reorderPoint": 193,
+    "safetyStock": 25
+  }
+]

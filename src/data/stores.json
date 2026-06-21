@@ -1,0 +1,17 @@
+[
+  {
+    "storeId": "T-1442",
+    "name": "Minneapolis Nicollet",
+    "region": "Midwest"
+  },
+  {
+    "storeId": "T-2185",
+    "name": "Dallas Knox St",
+    "region": "South"
+  },
+  {
+    "storeId": "T-3320",
+    "name": "Los Angeles La Brea",
+    "region": "West"
+  }
+]

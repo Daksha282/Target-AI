@@ -15,6 +15,13 @@ const riskOrder: Record<RiskClass, number> = {
   excess: 2,
 };
 
+const filterLabels: Record<RiskClass | "all", string> = {
+  all: "All",
+  "low-stock": "Low-Stock",
+  excess: "Excess",
+  healthy: "Healthy",
+};
+
 export function InventoryTable({ skuHealthList, onSelectSku }: Props) {
   const [sortKey, setSortKey] = useState<SortKey>("risk");
   const [sortAsc, setSortAsc] = useState(true);
@@ -75,13 +82,13 @@ export function InventoryTable({ skuHealthList, onSelectSku }: Props) {
         />
         <span className="toolbar-divider" />
         <span className="toolbar-label">Risk:</span>
-        {(["all", "low-stock", "healthy", "excess"] as const).map((f) => (
+        {(["all", "low-stock", "excess", "healthy"] as const).map((f) => (
           <button
             key={f}
             className={`filter-btn${riskFilter === f ? " active" : ""}`}
             onClick={() => setRiskFilter(f)}
           >
-            {f === "all" ? "All" : f}
+            {filterLabels[f]}
           </button>
         ))}
         <span className="toolbar-count">{visible.length} rows</span>

@@ -35,3 +35,30 @@ export interface SalesRecord {
   date: string; // ISO YYYY-MM-DD
   unitsSold: number;
 }
+
+export interface ForecastPoint {
+  weekLabel: string;
+  actual?: number;
+  projected?: number;
+}
+
+export type DataQuality = "high" | "medium" | "low";
+
+export interface SkuHealth {
+  skuId: string;
+  storeId: string;
+  sku: Sku;
+  inventoryRow: InventoryRow;
+  averageDailyDemand: number;
+  daysOfSupply: number;
+  /** Operative threshold — equals inventoryRow.reorderPoint (or category override). Used by classifyRisk. */
+  reorderPoint: number;
+  /** Engine-computed suggestion: add × leadTimeDays + safetyStock. For display only; never used for risk classification. */
+  suggestedReorderPoint: number;
+  reorderQty: number;
+  forecastData: ForecastPoint[];
+  riskClass: RiskClass;
+  dataQuality: DataQuality;
+  confidence: Confidence;
+  confidenceReason: string;
+}

@@ -4,17 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev:web": "vite",
-  "dev:api": "tsx watch server/index.ts",
-  "dev": "concurrently \"npm:dev:web\" \"npm:dev:api\"",
-  "build": "tsc && vite build",
-  "preview": "vite preview",
-  "test": "vitest run",
-  "test:watch": "vitest"
-},
+    "dev:web": "vite",
+    "dev:api": "tsx watch server/index.ts",
+    "dev": "concurrently \"npm:dev:web\" \"npm:dev:api\"",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
   "dependencies": {
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "openai": "^6.44.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "recharts": "^3.8.1"

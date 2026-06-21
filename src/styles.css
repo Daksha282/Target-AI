@@ -212,6 +212,23 @@ button:focus-visible, [tabindex]:focus-visible {
 .seg-ok .seg-value { color: var(--steel); }
 .seg-score::before { background: var(--ink); }
 
+/* ─── Data-trust readout (governance surfacing) ──────────────────────────── */
+.status-block { display: flex; flex-direction: column; gap: 9px; }
+.trust-strip {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;
+  padding: 0 2px; font-size: 12px; color: var(--muted);
+}
+.trust-label {
+  font-family: var(--font-display); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.trust-metric { white-space: nowrap; color: var(--muted); }
+.trust-metric strong { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; }
+.trust-metric:not(:last-child)::after { content: " ·"; color: var(--border-strong); }
+.trust-high { color: var(--steel); }
+.trust-low  { color: var(--signal); }
+.trust-flag { color: var(--amber); }
+
 /* ─── Panels / cards ─────────────────────────────────────────────────────── */
 .panel-title {
   font-family: var(--font-display); font-size: 11px; font-weight: 700;

@@ -27,6 +27,20 @@ export function PortfolioView({ onSelectSku }: Props) {
     [allItems]
   );
 
+  // Surfaces the Layer 1 confidence/data-quality fields at portfolio level (CLO 3).
+  // Reads existing SkuHealth fields only — no recomputation. Respects the store filter.
+  const trust = useMemo(() => {
+    let high = 0;
+    let low = 0;
+    let flagged = 0;
+    for (const h of filteredItems) {
+      if (h.confidence === "High") high++;
+      else if (h.confidence === "Low") low++;
+      if (h.dataQuality === "low" || h.dataQuality === "medium") flagged++;
+    }
+    return { high, low, flagged };
+  }, [filteredItems]);
+
   return (
     <div className="portfolio">
       <header className="app-header">
@@ -55,8 +69,22 @@ export function PortfolioView({ onSelectSku }: Props) {
       </header>
 
       <main className="portfolio-main">
-        {/* Row 1: portfolio health tiles */}
-        <HealthTiles skuHealthList={filteredItems} />
+        {/* Row 1: portfolio health tiles + data-trust readout */}
+        <div className="status-block">
+          <HealthTiles skuHealthList={filteredItems} />
+          <div className="trust-strip">
+            <span className="trust-label">Data trust</span>
+            <span className="trust-metric">
+              <strong className="trust-high">{trust.high}</strong> high-confidence
+            </span>
+            <span className="trust-metric">
+              <strong className="trust-low">{trust.low}</strong> low-confidence
+            </span>
+            <span className="trust-metric">
+              <strong className="trust-flag">{trust.flagged}</strong> flagged for data quality
+            </span>
+          </div>
+        </div>
 
         {/* Row 2: threshold controls + alerts side by side */}
         <div className="row2-grid">

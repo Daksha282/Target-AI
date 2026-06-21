@@ -131,6 +131,12 @@ button:focus-visible, [tabindex]:focus-visible {
 }
 .header-right { display: flex; align-items: center; gap: 14px; }
 
+/* Data-freshness stamp — muted, on the dark command bar */
+.data-asof {
+  font-family: var(--font-mono); font-size: 11px;
+  color: rgba(255, 255, 255, 0.55); white-space: nowrap;
+}
+
 .simulated-label {
   display: inline-flex; align-items: center; gap: 6px;
   background: rgba(255, 255, 255, 0.08);
@@ -508,8 +514,10 @@ button:focus-visible, [tabindex]:focus-visible {
   .detail-metrics { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .app-header { padding: 0 16px; height: 56px; }
+  .app-header { padding: 9px 16px; height: auto; min-height: 56px; flex-wrap: wrap; row-gap: 8px; }
   .brand-sub { display: none; }
+  /* Controls + freshness stamp drop to their own row under the title — no overflow */
+  .header-right { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 10px; }
   .portfolio-main { padding: 16px; gap: 14px; }
   .status-strip { grid-template-columns: 1fr 1fr; }
   .status-strip .strip-seg:nth-child(2) { border-left: none; }

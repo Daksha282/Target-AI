@@ -1,5 +1,7 @@
 import { useState, useMemo } from "react";
 import type { SkuHealth } from "../engine/types";
+import { DATA_TODAY } from "../data";
+import { formatDate } from "../lib/format";
 import { useInventoryEngine } from "../hooks/useInventoryEngine";
 import { HealthTiles } from "./HealthTiles";
 import { InventoryTable } from "./InventoryTable";
@@ -52,6 +54,7 @@ export function PortfolioView({ onSelectSku }: Props) {
           </span>
         </div>
         <div className="header-right">
+          <span className="data-asof">Data as of {formatDate(DATA_TODAY)}</span>
           <span className="simulated-label">Simulated data</span>
           <select
             className="store-select"

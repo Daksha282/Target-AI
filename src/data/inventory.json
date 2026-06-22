@@ -2,31 +2,31 @@
   {
     "storeId": "T-1442",
     "skuId": "SKU-1001",
-    "onHand": 65,
+    "onHand": 94,
     "onOrder": 0,
-    "reorderPoint": 144,
-    "safetyStock": 18
+    "reorderPoint": 210,
+    "safetyStock": 26
   },
   {
     "storeId": "T-2185",
     "skuId": "SKU-1001",
-    "onHand": 55,
+    "onHand": 68,
     "onOrder": 0,
-    "reorderPoint": 122,
-    "safetyStock": 15
+    "reorderPoint": 151,
+    "safetyStock": 19
   },
   {
     "storeId": "T-3320",
     "skuId": "SKU-1001",
-    "onHand": 78,
+    "onHand": 137,
     "onOrder": 0,
-    "reorderPoint": 173,
-    "safetyStock": 22
+    "reorderPoint": 304,
+    "safetyStock": 38
   },
   {
     "storeId": "T-1442",
     "skuId": "SKU-1002",
-    "onHand": 180,
+    "onHand": 175,
     "onOrder": 0,
     "reorderPoint": 42,
     "safetyStock": 6
@@ -34,29 +34,37 @@
   {
     "storeId": "T-2185",
     "skuId": "SKU-1002",
-    "onHand": 153,
+    "onHand": 112,
     "onOrder": 0,
-    "reorderPoint": 36,
-    "safetyStock": 5
+    "reorderPoint": 27,
+    "safetyStock": 4
   },
   {
     "storeId": "T-3320",
     "skuId": "SKU-1002",
-    "onHand": 216,
+    "onHand": 222,
     "onOrder": 0,
-    "reorderPoint": 50,
-    "safetyStock": 7
+    "reorderPoint": 54,
+    "safetyStock": 8
   },
   {
     "storeId": "T-1442",
     "skuId": "SKU-1003",
-    "onHand": 255,
-    "onOrder": 70,
-    "reorderPoint": 182,
-    "safetyStock": 42
+    "onHand": 169,
+    "onOrder": 47,
+    "reorderPoint": 121,
+    "safetyStock": 28
   },
   {
     "storeId": "T-2185",
+    "skuId": "SKU-1003",
+    "onHand": 105,
+    "onOrder": 29,
+    "reorderPoint": 75,
+    "safetyStock": 17
+  },
+  {
+    "storeId": "T-3320",
     "skuId": "SKU-1003",
     "onHand": 217,
     "onOrder": 60,
@@ -64,179 +72,171 @@
     "safetyStock": 36
   },
   {
-    "storeId": "T-3320",
-    "skuId": "SKU-1003",
-    "onHand": 305,
-    "onOrder": 84,
-    "reorderPoint": 218,
-    "safetyStock": 50
-  },
-  {
     "storeId": "T-1442",
     "skuId": "SKU-1004",
-    "onHand": 162,
-    "onOrder": 36,
-    "reorderPoint": 90,
-    "safetyStock": 27
+    "onHand": 229,
+    "onOrder": 37,
+    "reorderPoint": 100,
+    "safetyStock": 30
   },
   {
     "storeId": "T-2185",
     "skuId": "SKU-1004",
-    "onHand": 139,
-    "onOrder": 31,
-    "reorderPoint": 77,
-    "safetyStock": 23
+    "onHand": 141,
+    "onOrder": 29,
+    "reorderPoint": 60,
+    "safetyStock": 18
   },
   {
     "storeId": "T-3320",
     "skuId": "SKU-1004",
-    "onHand": 194,
-    "onOrder": 43,
-    "reorderPoint": 108,
-    "safetyStock": 32
+    "onHand": 313,
+    "onOrder": 53,
+    "reorderPoint": 136,
+    "safetyStock": 41
   },
   {
     "storeId": "T-1442",
     "skuId": "SKU-1005",
-    "onHand": 252,
-    "onOrder": 20,
-    "reorderPoint": 140,
+    "onHand": 204,
+    "onOrder": 18,
+    "reorderPoint": 141,
     "safetyStock": 15
   },
   {
     "storeId": "T-2185",
     "skuId": "SKU-1005",
-    "onHand": 214,
-    "onOrder": 17,
-    "reorderPoint": 119,
-    "safetyStock": 13
+    "onHand": 125,
+    "onOrder": 18,
+    "reorderPoint": 88,
+    "safetyStock": 9
   },
   {
     "storeId": "T-3320",
     "skuId": "SKU-1005",
-    "onHand": 302,
-    "onOrder": 24,
-    "reorderPoint": 168,
+    "onHand": 280,
+    "onOrder": 14,
+    "reorderPoint": 183,
+    "safetyStock": 20
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1006",
+    "onHand": 305,
+    "onOrder": 107,
+    "reorderPoint": 176,
+    "safetyStock": 88
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1006",
+    "onHand": 262,
+    "onOrder": 78,
+    "reorderPoint": 136,
+    "safetyStock": 68
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1006",
+    "onHand": 477,
+    "onOrder": 104,
+    "reorderPoint": 240,
+    "safetyStock": 120
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1007",
+    "onHand": 193,
+    "onOrder": 23,
+    "reorderPoint": 100,
     "safetyStock": 18
   },
   {
-    "storeId": "T-1442",
-    "skuId": "SKU-1006",
-    "onHand": 324,
-    "onOrder": 120,
-    "reorderPoint": 180,
-    "safetyStock": 90
-  },
-  {
-    "storeId": "T-2185",
-    "skuId": "SKU-1006",
-    "onHand": 274,
-    "onOrder": 102,
-    "reorderPoint": 152,
-    "safetyStock": 76
-  },
-  {
-    "storeId": "T-3320",
-    "skuId": "SKU-1006",
-    "onHand": 389,
-    "onOrder": 144,
-    "reorderPoint": 216,
-    "safetyStock": 108
-  },
-  {
-    "storeId": "T-1442",
-    "skuId": "SKU-1007",
-    "onHand": 122,
-    "onOrder": 16,
-    "reorderPoint": 68,
-    "safetyStock": 12
-  },
-  {
     "storeId": "T-2185",
     "skuId": "SKU-1007",
-    "onHand": 104,
-    "onOrder": 14,
-    "reorderPoint": 58,
-    "safetyStock": 10
-  },
-  {
-    "storeId": "T-3320",
-    "skuId": "SKU-1007",
-    "onHand": 146,
-    "onOrder": 19,
-    "reorderPoint": 81,
-    "safetyStock": 14
-  },
-  {
-    "storeId": "T-1442",
-    "skuId": "SKU-1008",
-    "onHand": 198,
-    "onOrder": 0,
-    "reorderPoint": 57,
-    "safetyStock": 9
-  },
-  {
-    "storeId": "T-2185",
-    "skuId": "SKU-1008",
-    "onHand": 168,
-    "onOrder": 0,
-    "reorderPoint": 49,
-    "safetyStock": 8
-  },
-  {
-    "storeId": "T-3320",
-    "skuId": "SKU-1008",
-    "onHand": 238,
-    "onOrder": 0,
-    "reorderPoint": 69,
+    "onHand": 126,
+    "onOrder": 12,
+    "reorderPoint": 62,
     "safetyStock": 11
   },
   {
+    "storeId": "T-3320",
+    "skuId": "SKU-1007",
+    "onHand": 239,
+    "onOrder": 27,
+    "reorderPoint": 129,
+    "safetyStock": 23
+  },
+  {
+    "storeId": "T-1442",
+    "skuId": "SKU-1008",
+    "onHand": 99,
+    "onOrder": 4,
+    "reorderPoint": 34,
+    "safetyStock": 5
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1008",
+    "onHand": 69,
+    "onOrder": 6,
+    "reorderPoint": 26,
+    "safetyStock": 4
+  },
+  {
+    "storeId": "T-3320",
+    "skuId": "SKU-1008",
+    "onHand": 129,
+    "onOrder": 13,
+    "reorderPoint": 46,
+    "safetyStock": 7
+  },
+  {
     "storeId": "T-1442",
     "skuId": "SKU-1009",
-    "onHand": 317,
+    "onHand": 283,
+    "onOrder": 47,
+    "reorderPoint": 162,
+    "safetyStock": 61
+  },
+  {
+    "storeId": "T-2185",
+    "skuId": "SKU-1009",
+    "onHand": 208,
     "onOrder": 88,
-    "reorderPoint": 176,
-    "safetyStock": 66
-  },
-  {
-    "storeId": "T-2185",
-    "skuId": "SKU-1009",
-    "onHand": 270,
-    "onOrder": 75,
-    "reorderPoint": 150,
-    "safetyStock": 56
+    "reorderPoint": 121,
+    "safetyStock": 45
   },
   {
     "storeId": "T-3320",
     "skuId": "SKU-1009",
-    "onHand": 380,
-    "onOrder": 106,
-    "reorderPoint": 211,
-    "safetyStock": 79
+    "onHand": 349,
+    "onOrder": 139,
+    "reorderPoint": 219,
+    "safetyStock": 82
   },
   {
     "storeId": "T-1442",
     "skuId": "SKU-1010",
-    "onHand": 290,
-    "onOrder": 28,
-    "reorderPoint": 161,
-    "safetyStock": 21
+    "onHand": 274,
+    "onOrder": 41,
+    "reorderPoint": 217,
+    "safetyStock": 28
   },
   {
     "storeId": "T-2185",
     "skuId": "SKU-1010",
-    "onHand": 247,
-    "onOrder": 24,
-    "reorderPoint": 137,
-    "safetyStock": 18
+    "onHand": 217,
+    "onOrder": 32,
+    "reorderPoint": 167,
+    "safetyStock": 22
   },
   {
     "storeId": "T-3320",
     "skuId": "SKU-1010",
-    "onHand": 347,
-    "onOrder": 34,
-    "reorderPoint": 193,
-    "safetyStock": 25
+    "onHand": 397,
+    "onOrder": 44,
+    "reorderPoint": 309,
+    "safetyStock": 40
   }
 ]

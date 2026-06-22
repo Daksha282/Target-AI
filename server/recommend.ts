@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import type { SkuHealth, Role } from "../src/engine/types";
-import { groqClient, GROQ_MODEL } from "./groqClient";
+import { getGroqClient, GROQ_MODEL } from "./groqClient";
 import { checkGrounding } from "./grounding";
 
 const router = Router();
@@ -103,7 +103,7 @@ router.post("/brief", async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
-    const completion = await groqClient.chat.completions.create({
+    const completion = await getGroqClient().chat.completions.create({
       model: GROQ_MODEL,
       messages: [
         { role: "system", content: BRIEF_SYSTEM_PROMPT },
@@ -142,7 +142,7 @@ router.post("/recommend", async (req: Request, res: Response): Promise<void> => 
   }
 
   try {
-    const completion = await groqClient.chat.completions.create({
+    const completion = await getGroqClient().chat.completions.create({
       model: GROQ_MODEL,
       messages: [
         { role: "system", content: buildSystemPrompt(role) },

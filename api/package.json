@@ -1,0 +1,4 @@
+{
+  "comment": "Overrides the root \"type\": \"module\" for Vercel serverless functions only. The OpenAI/Express deps are CommonJS and call require() internally; bundling them into an ESM function fails at load with 'Dynamic require of \"tty\" is not supported'. Building this folder as CommonJS resolves it. The Vite frontend (src/) stays ESM via the root package.json.",
+  "type": "commonjs"
+}

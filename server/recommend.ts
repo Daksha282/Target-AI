@@ -69,6 +69,11 @@ interface SkuHealthSummary {
   riskClass: string;
   confidence: string;
   dataQuality: string;
+  demandTrend: string;
+  weeklyPctChange: number;
+  projectedStockoutDate: string | null;
+  orderByDate: string | null;
+  overdue: boolean;
 }
 
 const BRIEF_SYSTEM_PROMPT =
@@ -76,8 +81,13 @@ const BRIEF_SYSTEM_PROMPT =
   "write ONE paragraph (4-6 sentences) summarizing the at-risk inventory: how many SKUs " +
   "are low-stock, any pattern (owned-brand / long-lead / specific store), the total reorder " +
   "units needed (sum the reorderQty values given — do not compute anything else), and the " +
-  "single highest-priority action. Mention overall data confidence. Do not invent numbers " +
-  "not in the payload. Data is simulated.";
+  "single highest-priority action. " +
+  "PRIORITIZE BY TREND: SKUs that are low-stock AND have demandTrend 'rising' are the TOP " +
+  "PRIORITY — call them out first, since rising demand widens the gap (note any that are " +
+  "overdue). Separately, flag SKUs that are 'excess' AND have demandTrend 'falling' as " +
+  "MARKDOWN/obsolescence risk — these should be reduced (markdown, promotion, transfer), NOT " +
+  "reordered. Mention overall data confidence. Do not invent numbers not in the payload. " +
+  "Data is simulated.";
 
 router.post("/brief", async (req: Request, res: Response): Promise<void> => {
   const { items } = req.body as { items: SkuHealthSummary[] };

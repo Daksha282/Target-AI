@@ -20,6 +20,16 @@ interface SkuHealthSummary {
   riskClass: string;
   confidence: string;
   dataQuality: string;
+  /** Layer 1 demand direction: "rising" | "falling" | "flat". */
+  demandTrend: string;
+  /** Fractional week-over-week change (e.g. 0.25 = +25%). */
+  weeklyPctChange: number;
+  /** ISO date the SKU is projected to stock out, or null if no demand. */
+  projectedStockoutDate: string | null;
+  /** ISO date by which an order must be placed, or null. */
+  orderByDate: string | null;
+  /** True when the order-by date is today or already past. */
+  overdue: boolean;
 }
 
 /** Round finite values to a whole number; pass non-finite (e.g. Infinity) through unchanged. */
@@ -41,6 +51,11 @@ function toSummary(h: SkuHealth): SkuHealthSummary {
     riskClass: h.riskClass,
     confidence: h.confidence,
     dataQuality: h.dataQuality,
+    demandTrend: h.demandTrend.direction,
+    weeklyPctChange: h.demandTrend.weeklyPctChange,
+    projectedStockoutDate: h.projection.projectedStockoutDate,
+    orderByDate: h.projection.orderByDate,
+    overdue: h.projection.overdue,
   };
 }
 

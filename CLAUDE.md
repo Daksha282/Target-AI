@@ -55,7 +55,7 @@ as production-realistic.
 - averageDailyDemand(history, windowDays=28): sum of unitsSold in trailing window / windowDays
 - daysOfSupply(onHand, add): add <= 0 ? Infinity : onHand / add
 - reorderPoint(add, leadTimeDays, safetyStock): add * leadTimeDays + safetyStock
-- fourWeekForecast(history): last 4 ISO-week totals -> moving average -> project next 4 weeks flat
+- fourWeekForecast(history, today): ISO-week totals -> Holt linear trend (double exponential smoothing: level + trend, trained on complete weeks only) -> project next 4 weeks along the slope; falls back to a flat average when <3 complete weeks
 - classifyRisk: onHand <= reorderPoint -> low-stock; else daysOfSupply > max(60, leadTimeDays*3) -> excess; else healthy
 - reorderQuantity({onHand, onOrder, reorderPoint, add, cycleDays=14}): target = reorderPoint + add*cycleDays; qty = max(0, round(target - (onHand + onOrder)))
 - dataQuality(history, windowDays): coverage = days-with-data / windowDays; >=0.85 high, 0.6-0.85 medium, <0.6 low

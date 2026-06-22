@@ -55,7 +55,7 @@ export function runEngine(
       add,
     });
 
-    const forecastData = fourWeekForecast(history);
+    const forecastData = fourWeekForecast(history, today);
     const dq = dataQuality(history, today);
     const conf = confidence({ dq, history });
 

@@ -72,7 +72,7 @@ Target-AI/
 │   ├── engine/               # ── LAYER 1: SOURCE OF TRUTH ──
 │   │   ├── types.ts
 │   │   ├── metrics.ts        # avg daily demand, days of supply, reorder point
-│   │   ├── forecast.ts       # 4-week moving average + projection
+│   │   ├── forecast.ts       # Holt linear trend (double exponential smoothing) + projection
 │   │   ├── risk.ts           # low-stock / healthy / excess
 │   │   ├── reorder.ts        # reorder quantity
 │   │   ├── confidence.ts     # data-quality + variability -> High/Med/Low
@@ -110,7 +110,7 @@ All functions pure, all in `src/engine/`, all unit-tested. `windowDays = 28` def
 - **averageDailyDemand(history, windowDays=28)** → sum of `unitsSold` in trailing window ÷ windowDays.
 - **daysOfSupply(onHand, add)** → `add <= 0 ? Infinity : onHand / add`.
 - **reorderPoint(add, leadTimeDays, safetyStock)** → `add * leadTimeDays + safetyStock`.
-- **fourWeekForecast(history)** → last 4 ISO-week totals → moving average → project next 4 weeks flat at that average. Return `{weekLabel, actual?, projected}[]` so the chart shows actuals then a dotted projection.
+- **fourWeekForecast(history, today)** → ISO-week totals → Holt linear trend (double exponential smoothing: level + trend, trained on complete weeks only) → project next 4 weeks along the slope (flat-average fallback when <3 complete weeks). Return `{weekLabel, actual?, projected}[]` so the chart shows actuals then a dotted, sloped projection.
 - **classifyRisk({onHand, reorderPoint, daysOfSupply, leadTimeDays})**:
   - `onHand <= reorderPoint` → **low-stock**
   - else `daysOfSupply > max(60, leadTimeDays * 3)` → **excess**
@@ -332,7 +332,7 @@ Add to `package.json` scripts so one command runs both:
 1. Open on **Portfolio** — "simulated Target data, 3 stores. Tiles: X at risk, Y overstocked, health score Z."
 2. Point at the **owned-brand low-stock SKU** — "21-day lead time, under reorder point. This is the Phase 1 problem made visible."
 3. **Lower a category threshold** live → SKUs flip to low-stock, alerts repopulate. "Configurable, deterministic, instant."
-4. Open the **SKU detail** → forecast chart. "Actuals, then the 4-week moving-average projection — computed in the rules engine, fully auditable."
+4. Open the **SKU detail** → forecast chart. "Actuals, then the Holt linear-trend projection (double exponential smoothing) — computed in the rules engine, fully auditable."
 5. **AI panel:** generate as **Planner** (gets exact reorder qty + timing), then switch to **Executive** (risk/return). "Same numbers, re-voiced. The LLM never touched the math — that's the two-layer design."
 6. Open the **gap-history SKU** → **data-quality flag + low confidence**. "The system tells you when to trust it. That's the governance layer (CLO 3)."
 

@@ -45,7 +45,11 @@ function buildSystemPrompt(role: Role): string {
     `2. You MUST mention the confidence level and data quality in your response.\n` +
     `3. Respond in 3–5 sentences, then the "Drivers:" line. No bullet points, no headers.\n` +
     `4. Do not claim you performed any calculation — all numbers come from the payload.\n` +
-    `5. This data is SIMULATED for a prototype demo. Do not present it as live production data.`
+    `5. Write in plain business prose. NEVER name internal payload fields (e.g. ` +
+    `"display.demandTrend", "demandTrend.direction", "riskClass") in your sentences; describe ` +
+    `what they mean instead (e.g. "demand is falling"). Field names may appear only in the ` +
+    `final "Drivers:" line.\n` +
+    `6. This data is SIMULATED for a prototype demo. Do not present it as live production data.`
   );
 }
 

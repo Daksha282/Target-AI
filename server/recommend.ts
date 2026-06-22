@@ -7,27 +7,43 @@ const router = Router();
 function buildSystemPrompt(role: Role): string {
   const roleInstructions: Record<Role, string> = {
     analyst:
-      "You are a senior inventory analyst. Provide diagnostic detail: explain WHY the SKU " +
-      "is in its current risk state, what the demand trend and data quality reveal, and what " +
-      "leading indicators a buyer should watch. Use precise inventory terminology.",
+      "You are a senior inventory analyst. After the action, give the diagnostic detail a " +
+      "buyer needs: what the demand trend and data quality reveal about why this risk is " +
+      "emerging and which leading indicator to watch. Use precise inventory terminology.",
     planner:
-      "You are a supply chain planner. Provide executable action: state the exact reorder " +
-      "quantity from the payload, the urgency given days-of-supply vs lead time, and the " +
-      "suggested timing. Be direct and operational — no background explanation.",
+      "You are a supply chain planner. Be operational. State the exact reorderQty from the " +
+      "payload and the concrete order-by date (display.orderByDate). If display.overdue is " +
+      "true, say to order now — the order-by date is already past/overdue. No background.",
     executive:
-      "You are briefing a retail executive. Give a risk/return summary: business impact if " +
-      "no action is taken, brand or margin relevance, confidence level, and one recommended " +
-      "action. No supply-chain jargon — plain business language only.",
+      "You are briefing a retail executive. After the action, give a one-line risk/return " +
+      "read: business impact if nothing is done and brand/margin relevance. Plain business " +
+      "language only — no supply-chain jargon.",
   };
 
   return (
     `You are an AI inventory advisor for Target Corporation. Your role for this response: ${role}.\n\n` +
     `${roleInstructions[role]}\n\n` +
+    `HOW TO WRITE THE RESPONSE:\n` +
+    `- LEAD with the recommended action in the first sentence. Do NOT open by restating the ` +
+    `numbers; state what to do, then justify it.\n` +
+    `- Include EXACTLY ONE "because" clause that names the specific payload field that triggered ` +
+    `the risk — e.g. "because days-of-supply (10) is below the 21-day lead time" or "because ` +
+    `onHand (65) is at/below the reorder point (144)".\n` +
+    `- USE THE DEMAND TREND (display.demandTrend, demandTrend.direction):\n` +
+    `  • riskClass "low-stock" AND demand rising → escalate: recommend expediting or pulling the ` +
+    `reorder forward; the gap is widening.\n` +
+    `  • riskClass "excess" AND demand falling → this is markdown/obsolescence risk, not a reorder ` +
+    `situation. Recommend REDUCING exposure (markdown, promotion, or transfer) and do NOT ` +
+    `recommend reordering.\n` +
+    `  • otherwise → reflect the trend's direction in your urgency.\n` +
+    `- End with one final line that begins exactly "Drivers: " followed by the key payload ` +
+    `numbers you relied on (e.g. "Drivers: onHand 65, reorder 144, lead 21d, demand rising 12%").\n\n` +
     `STRICT RULES — violating any rule makes your response unusable:\n` +
-    `1. Use ONLY the numbers present in the skuHealth JSON payload. Do not calculate, ` +
-    `   recompute, or invent any figure. If a value is not in the payload, do not mention it.\n` +
+    `1. Use ONLY the numbers present in the skuHealth JSON payload (including the display block). ` +
+    `Do not calculate, recompute, or invent any figure. If a value is not in the payload, do not ` +
+    `mention it.\n` +
     `2. You MUST mention the confidence level and data quality in your response.\n` +
-    `3. Respond in 3–5 sentences maximum. No bullet points, no headers.\n` +
+    `3. Respond in 3–5 sentences, then the "Drivers:" line. No bullet points, no headers.\n` +
     `4. Do not claim you performed any calculation — all numbers come from the payload.\n` +
     `5. This data is SIMULATED for a prototype demo. Do not present it as live production data.`
   );
@@ -122,7 +138,7 @@ router.post("/recommend", async (req: Request, res: Response): Promise<void> => 
             JSON.stringify(skuHealth, null, 2),
         },
       ],
-      max_tokens: 300,
+      max_tokens: 320,
       temperature: 0.3,
     });
 

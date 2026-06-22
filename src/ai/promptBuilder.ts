@@ -1,4 +1,26 @@
 import type { SkuHealth, Role, ForecastPoint } from "../engine/types";
+import { formatDate } from "../lib/format";
+
+/**
+ * Prose-ready restatements of Layer 1's trend/projection signals. These do NOT
+ * introduce new numbers — they reformat values already present on the SkuHealth so
+ * the LLM can drop them straight into a sentence without recomputing or reformatting.
+ */
+export interface DisplaySignals {
+  /** e.g. "rising 12%/period", "falling 8%/period", or "flat". */
+  demandTrend: string;
+  /** e.g. "Jul 2, 2026", or "no projected stockout" when there is no finite stockout. */
+  projectedStockoutDate: string;
+  /** e.g. "Jun 28, 2026", or "no projected stockout" when there is no order-by date. */
+  orderByDate: string;
+  /** True when the order-by date is today or already past. */
+  overdue: boolean;
+}
+
+/** The rounded SkuHealth carried to the LLM, plus prose-formatted signal strings. */
+export interface RecommendationSkuHealth extends SkuHealth {
+  display: DisplaySignals;
+}
 
 /**
  * Layer 2 boundary: this function constructs the payload that crosses from
@@ -18,8 +40,31 @@ import type { SkuHealth, Role, ForecastPoint } from "../engine/types";
 export function buildRecommendationPayload(
   skuHealth: SkuHealth,
   role: Role
-): { skuHealth: SkuHealth; role: Role } {
-  return { skuHealth: roundForDisplay(skuHealth), role };
+): { skuHealth: RecommendationSkuHealth; role: Role } {
+  const rounded = roundForDisplay(skuHealth);
+  return {
+    skuHealth: { ...rounded, display: buildDisplaySignals(skuHealth) },
+    role,
+  };
+}
+
+/** Reformats the engine's demandTrend/projection signals into prose-ready strings. */
+function buildDisplaySignals(h: SkuHealth): DisplaySignals {
+  const { direction, weeklyPctChange } = h.demandTrend;
+  const demandTrend =
+    direction === "flat"
+      ? "flat"
+      : `${direction} ${Math.abs(Math.round(weeklyPctChange * 100))}%/period`;
+
+  const { projectedStockoutDate, orderByDate, overdue } = h.projection;
+  return {
+    demandTrend,
+    projectedStockoutDate: projectedStockoutDate
+      ? formatDate(projectedStockoutDate)
+      : "no projected stockout",
+    orderByDate: orderByDate ? formatDate(orderByDate) : "no projected stockout",
+    overdue,
+  };
 }
 
 /** Round to one decimal place; pass non-finite values (e.g. Infinity) through unchanged. */

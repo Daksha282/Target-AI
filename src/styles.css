@@ -266,6 +266,15 @@ button:focus-visible, [tabindex]:focus-visible {
 .alert-stats { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; margin-top: 3px; color: var(--ink-2); }
 .alert-stats strong { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); }
 
+/* ─── Portfolio insights (read-only charts) ──────────────────────────────── */
+.insights-section { display: flex; flex-direction: column; gap: 12px; }
+.insights-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.insight-card {
+  background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;
+  padding: 16px; box-shadow: var(--shadow);
+}
+.insight-caption { margin-top: 8px; font-size: 12px; color: var(--muted); }
+
 /* ─── Inventory table ────────────────────────────────────────────────────── */
 .table-wrapper {
   background: var(--surface); border: 1px solid var(--border);
@@ -509,6 +518,9 @@ button:focus-visible, [tabindex]:focus-visible {
 @media (max-width: 900px) {
   .portfolio-grid { grid-template-columns: 1fr; }
   .row2-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .insights-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
   .detail-metrics { grid-template-columns: repeat(2, 1fr); }

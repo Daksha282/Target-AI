@@ -10,7 +10,7 @@ This is your single working doc for the build day. Save it in the repo root as `
 ## 0. Decisions locked before you touch the keyboard
 
 **Stack**
-- Vite + React 18 + TypeScript (strict) — *not* Create React App (dead).
+- Vite + React 19 + TypeScript (strict) — *not* Create React App (dead).
 - Recharts — charts.
 - Express (Node 20) — tiny backend that holds the LLM key and proxies the call. This is what makes the security story real (CLO 3).
 - Groq API, model `llama-3.3-70b-versatile`, via its OpenAI-compatible endpoint. Free, fast, perfect for a demo.
@@ -196,7 +196,7 @@ as production-realistic.
 - Never collapse these layers. This separation is the entire thesis of the project.
 
 ## Stack (do not substitute without asking)
-- Vite + React 18 + TypeScript (strict mode, no `any`, explicit return types on engine fns)
+- Vite + React 19 + TypeScript (strict mode, no `any`, explicit return types on engine fns)
 - Recharts for charts
 - Express (Node 20) backend whose ONLY jobs are holding the API key and proxying the LLM call
 - Groq API, model llama-3.3-70b-versatile, OpenAI-compatible endpoint, called from server only
@@ -344,7 +344,7 @@ Take a clean screenshot at steps 1, 4, 5, and 6 — those four images carry Phas
 
 - **Phase 3 (Project Design paper):** screenshots + the two-layer diagram + the mock schema + an example grounded prompt + the SDLC framing (requirements→design→build→test→deploy). Your tests *are* the "test" stage evidence.
 - **CLO 2 (risk):** the data-quality flag + confidence is a working risk-identification control, not just prose.
-- **CLO 3 (legal/ethical/security):** server-side key, no PII in prompts, role-based access, grounding against hallucinated numbers — all demonstrable on screen.
+- **CLO 3 (legal/ethical/security):** server-side key, no PII in prompts, role-tailored recommendations (true role-based access control = future work), grounding against hallucinated numbers — all demonstrable on screen.
 - **CLO 4 (SDLC):** the Agile feature-by-feature build maps straight to Phase 4 sprints.
 - **Week 8 deck:** the demo script above is your live segment.
 

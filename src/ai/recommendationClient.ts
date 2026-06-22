@@ -11,10 +11,19 @@ export class RecommendationError extends Error {
   }
 }
 
+export interface RecommendationResult {
+  recommendation: string;
+  role: Role;
+  /** CLO 3 guardrail: true when every figure in the prose traces to Layer 1 values. */
+  grounded: boolean;
+  /** Numbers stated in the prose that did not match any payload value (within ±1). */
+  ungroundedNumbers: number[];
+}
+
 export async function getRecommendation(
   skuHealth: SkuHealth,
   role: Role
-): Promise<string> {
+): Promise<RecommendationResult> {
   const payload = buildRecommendationPayload(skuHealth, role);
 
   const res = await fetch("/api/recommend", {
@@ -30,6 +39,13 @@ export async function getRecommendation(
     throw new RecommendationError(message, res.status);
   }
 
-  const data = (await res.json()) as { recommendation: string; role: Role };
-  return data.recommendation;
+  const data = (await res.json()) as Partial<RecommendationResult> & {
+    recommendation: string;
+  };
+  return {
+    recommendation: data.recommendation,
+    role,
+    grounded: data.grounded ?? true,
+    ungroundedNumbers: data.ungroundedNumbers ?? [],
+  };
 }

@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import type { SkuHealth, Role } from "../src/engine/types";
 import { groqClient, GROQ_MODEL } from "./groqClient";
+import { checkGrounding } from "./grounding";
 
 const router = Router();
 
@@ -157,7 +158,10 @@ router.post("/recommend", async (req: Request, res: Response): Promise<void> => 
     });
 
     const recommendation = completion.choices[0]?.message?.content ?? "";
-    res.json({ recommendation, role });
+    // CLO 3 guardrail: verify the model's numbers against the payload. Flag only —
+    // never block or retry, so the demo always returns a recommendation.
+    const { grounded, ungroundedNumbers } = checkGrounding(recommendation, skuHealth);
+    res.json({ recommendation, role, grounded, ungroundedNumbers });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     res.status(500).json({ error: `LLM call failed: ${message}` });

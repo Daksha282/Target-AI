@@ -496,6 +496,13 @@ button:focus-visible, [tabindex]:focus-visible {
   color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
 }
 .ai-output p { font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+.ai-grounding-warn {
+  margin-top: 12px; padding: 8px 11px; font-size: 12px; font-weight: 600;
+  background: var(--amber-wash); color: #6e480e;
+  border: 1px solid var(--amber-edge); border-left: var(--rail-w) solid var(--amber);
+  border-radius: var(--radius-sm);
+}
+.ai-grounding-ok { margin-top: 12px; font-size: 11px; color: var(--muted); }
 .ai-disclaimer { margin-top: 12px; font-size: 10px; color: var(--muted); font-style: italic; }
 
 .ai-error {

@@ -9,6 +9,7 @@ import { AlertsPanel } from "./AlertsPanel";
 import { ThresholdControls } from "./ThresholdControls";
 import { RiskByStoreChart } from "./RiskByStoreChart";
 import { SupplyVsLeadChart } from "./SupplyVsLeadChart";
+import { PortfolioBrief } from "./PortfolioBrief";
 
 interface Props {
   onSelectSku: (health: SkuHealth) => void;
@@ -106,7 +107,10 @@ export function PortfolioView({ onSelectSku }: Props) {
           </div>
         </section>
 
-        {/* Row 4: full-width inventory table */}
+        {/* Row 4: set-level AI briefing over the current filtered portfolio */}
+        <PortfolioBrief items={filteredItems} />
+
+        {/* Row 5: full-width inventory table */}
         <InventoryTable skuHealthList={filteredItems} onSelectSku={onSelectSku} />
       </main>
     </div>

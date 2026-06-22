@@ -35,6 +35,66 @@ function buildSystemPrompt(role: Role): string {
 
 const VALID_ROLES: Role[] = ["analyst", "planner", "executive"];
 
+/**
+ * Set-level Layer 2 boundary. The briefing summarizes the WHOLE filtered portfolio,
+ * so the LLM receives a trimmed per-SKU summary (already rounded by the client) and
+ * may sum reorderQty — but compute nothing else and invent no figure.
+ */
+interface SkuHealthSummary {
+  skuId: string;
+  name: string;
+  storeId: string;
+  category: string;
+  brandType: string;
+  leadTimeDays: number;
+  onHand: number;
+  daysOfSupply: number;
+  reorderQty: number;
+  riskClass: string;
+  confidence: string;
+  dataQuality: string;
+}
+
+const BRIEF_SYSTEM_PROMPT =
+  "You are a supply chain planner briefing leadership. Using ONLY the numbers provided, " +
+  "write ONE paragraph (4-6 sentences) summarizing the at-risk inventory: how many SKUs " +
+  "are low-stock, any pattern (owned-brand / long-lead / specific store), the total reorder " +
+  "units needed (sum the reorderQty values given — do not compute anything else), and the " +
+  "single highest-priority action. Mention overall data confidence. Do not invent numbers " +
+  "not in the payload. Data is simulated.";
+
+router.post("/brief", async (req: Request, res: Response): Promise<void> => {
+  const { items } = req.body as { items: SkuHealthSummary[] };
+
+  if (!Array.isArray(items) || items.length === 0) {
+    res.status(400).json({ error: "items must be a non-empty array." });
+    return;
+  }
+
+  try {
+    const completion = await groqClient.chat.completions.create({
+      model: GROQ_MODEL,
+      messages: [
+        { role: "system", content: BRIEF_SYSTEM_PROMPT },
+        {
+          role: "user",
+          content:
+            "Here is the at-risk inventory summary. Use ONLY these values:\n\n" +
+            JSON.stringify(items, null, 2),
+        },
+      ],
+      max_tokens: 350,
+      temperature: 0.3,
+    });
+
+    const brief = completion.choices[0]?.message?.content ?? "";
+    res.json({ brief });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Unknown error";
+    res.status(500).json({ error: `LLM call failed: ${message}` });
+  }
+});
+
 router.post("/recommend", async (req: Request, res: Response): Promise<void> => {
   const { skuHealth, role } = req.body as { skuHealth: SkuHealth; role: Role };
 

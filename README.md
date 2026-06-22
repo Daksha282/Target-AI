@@ -58,7 +58,7 @@ The defining design decision is a hard split between computation and narration.
 
 | Layer | Choice |
 |---|---|
-| UI | React 18 + TypeScript (strict) via Vite |
+| UI | React 19 + TypeScript (strict) via Vite |
 | Charts | Recharts |
 | Rules engine | Pure TypeScript, unit-tested with Vitest |
 | Backend | Express (Node 20) — holds the API key, proxies the LLM call |

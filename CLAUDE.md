@@ -25,7 +25,7 @@ as production-realistic.
 - Never collapse these layers. This separation is the entire thesis of the project.
 
 ## Stack (do not substitute without asking)
-- Vite + React 18 + TypeScript (strict mode, no `any`, explicit return types on engine fns)
+- Vite + React 19 + TypeScript (strict mode, no `any`, explicit return types on engine fns)
 - Recharts for charts
 - Express (Node 20) backend whose ONLY jobs are holding the API key and proxying the LLM call
 - Groq API, model llama-3.3-70b-versatile, OpenAI-compatible endpoint, called from server only
@@ -60,3 +60,30 @@ as production-realistic.
 - reorderQuantity({onHand, onOrder, reorderPoint, add, cycleDays=14}): target = reorderPoint + add*cycleDays; qty = max(0, round(target - (onHand + onOrder)))
 - dataQuality(history, windowDays): coverage = days-with-data / windowDays; >=0.85 high, 0.6-0.85 medium, <0.6 low
 - confidence({dataQuality, history}): combine coverage with weekly-demand variability (coeff. of variation); returns 'High'|'Medium'|'Low' + a one-line reason
+
+## Commands
+- `npm run dev` — runs frontend + backend together (concurrently). Use this for normal development.
+- `npm run dev:web` — Vite frontend only on `:5173`.
+- `npm run dev:api` — Express backend only on `:8787` (tsx watch). Needs `.env` with `GROQ_API_KEY`.
+- `npm test` — full Vitest engine suite (one-shot). `npm run test:watch` for watch mode.
+- Run a single test file: `npx vitest run src/engine/__tests__/forecast.test.ts`
+- Filter by test name: `npx vitest run -t "reorder point"`
+- `npm run build` — typecheck (`tsc`) then `vite build`. Build fails on any type error (strict mode). `npm run preview` serves the build.
+- Lint: `npx eslint .`
+- Regenerate mock data: `python3 generate_mock_data.py` (rewrites the JSON in `src/data/`).
+
+## Dev topology (how the two layers connect at runtime)
+- Browser → Vite (`:5173`) proxies all `/api/*` calls to Express (`:8787`) — see `vite.config.ts`. This proxy is what keeps `GROQ_API_KEY` server-side; the browser never holds it.
+- Layer 2 has two server endpoints, both in `server/recommend.ts`:
+  - `POST /api/recommend` — single SKU. Receives one full `SkuHealth`; role-tailored prose (analyst/planner/executive). The LLM may compute nothing.
+  - `POST /api/brief` — set-level portfolio summary. Receives a trimmed `SkuHealthSummary[]` (already rounded client-side). This is the ONE place the LLM is allowed to `sum reorderQty` — and nothing else.
+- Client callers live in `src/ai/` (`recommendationClient.ts`, `briefClient.ts`); `promptBuilder.ts` shapes the Layer 1 numbers into the request payload.
+
+## Architecture facts worth knowing before editing
+- **"Today" is the latest date in `salesHistory`, NOT the system clock** — defined as `DATA_TODAY` in `src/data/index.ts` and re-derived in `runEngine`. All trailing-window math depends on this; never substitute `Date.now()`.
+- **Operative vs suggested reorder point**: `SkuHealth.reorderPoint` is the *operative* threshold (stored value, or category override) and is the ONLY one `classifyRisk`/`reorderQuantity` may use. `suggestedReorderPoint` is the engine's formula output, for display only — never feed it back into risk logic.
+- **Single data entry point**: all React reads go through the `useInventoryEngine` hook → `runEngine`. Threshold UI sets a per-`skuId` value; the hook losslessly maps it to the engine's per-`category` override API.
+- Mock JSON is imported directly (`src/data/index.ts`) — there is no fetch/loading state for data; only the LLM calls are async.
+
+## Note on versions
+`package.json` is the ground truth: React 19, TypeScript ~6, Vite 8, Express 5, on Node 20 LTS.

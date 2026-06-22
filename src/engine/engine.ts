@@ -4,6 +4,7 @@ import { fourWeekForecast } from "./forecast";
 import { classifyRisk } from "./risk";
 import { reorderQuantity } from "./reorder";
 import { dataQuality, confidence } from "./confidence";
+import { demandTrend, projectionDates } from "./signals";
 
 export function runEngine(
   _stores: Store[],
@@ -58,6 +59,9 @@ export function runEngine(
     const dq = dataQuality(history, today);
     const conf = confidence({ dq, history });
 
+    const trend = demandTrend(history, today);
+    const projection = projectionDates(dos, sku.leadTimeDays, today);
+
     return {
       skuId: row.skuId,
       storeId: row.storeId,
@@ -73,6 +77,8 @@ export function runEngine(
       dataQuality: dq,
       confidence: conf.level,
       confidenceReason: conf.reason,
+      demandTrend: trend,
+      projection,
     };
   });
 }

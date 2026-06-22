@@ -1,22 +1,10 @@
 import type { SalesRecord, ForecastPoint } from "./types";
-
-function isoWeekLabel(date: Date): string {
-  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-  const dayNum = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const weekNo = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
-  return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, "0")}`;
-}
+import { weeklyTotals } from "./weekly";
 
 export function fourWeekForecast(history: SalesRecord[]): ForecastPoint[] {
   if (history.length === 0) return [];
-  // Aggregate into ISO weeks
-  const weekTotals = new Map<string, number>();
-  for (const r of history) {
-    const label = isoWeekLabel(new Date(r.date));
-    weekTotals.set(label, (weekTotals.get(label) ?? 0) + r.unitsSold);
-  }
+  // Aggregate into ISO weeks (shared bucketing logic — see weekly.ts)
+  const weekTotals = weeklyTotals(history);
 
   const sortedWeeks = [...weekTotals.keys()].sort();
   const last4 = sortedWeeks.slice(-4);

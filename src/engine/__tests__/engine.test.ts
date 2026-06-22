@@ -49,6 +49,17 @@ describe("runEngine", () => {
     expect(runEngine(stores, skus, inventory, salesHistory)).toHaveLength(3);
   });
 
+  it("every SkuHealth carries demandTrend and projection signals", () => {
+    const result = runEngine(stores, skus, inventory, salesHistory);
+    for (const h of result) {
+      expect(["rising", "falling", "flat"]).toContain(h.demandTrend.direction);
+      expect(typeof h.demandTrend.weeklyPctChange).toBe("number");
+      expect(h.projection).toHaveProperty("projectedStockoutDate");
+      expect(h.projection).toHaveProperty("orderByDate");
+      expect(typeof h.projection.overdue).toBe("boolean");
+    }
+  });
+
   it("S-1: correctly identifies healthy SKU using stored reorderPoint", () => {
     const result = runEngine(stores, skus, inventory, salesHistory);
     const s1 = result.find((r) => r.skuId === "S-1")!;

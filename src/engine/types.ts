@@ -44,6 +44,21 @@ export interface ForecastPoint {
 
 export type DataQuality = "high" | "medium" | "low";
 
+export interface DemandTrend {
+  direction: "rising" | "falling" | "flat";
+  /** Fractional week-over-week change (e.g. 0.12 = +12%). UI multiplies by 100. */
+  weeklyPctChange: number;
+}
+
+export interface Projection {
+  /** ISO YYYY-MM-DD the SKU is projected to hit zero on-hand, or null if no demand. */
+  projectedStockoutDate: string | null;
+  /** ISO YYYY-MM-DD by which an order must be placed to avoid a stockout, or null. */
+  orderByDate: string | null;
+  /** True when the order-by date is today or already past. */
+  overdue: boolean;
+}
+
 export interface SkuHealth {
   skuId: string;
   storeId: string;
@@ -61,4 +76,6 @@ export interface SkuHealth {
   dataQuality: DataQuality;
   confidence: Confidence;
   confidenceReason: string;
+  demandTrend: DemandTrend;
+  projection: Projection;
 }
